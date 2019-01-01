@@ -100,4 +100,4 @@ Example with default layout:
 
 ## Credits
 
-Thanks to [DavidMStraub](https://github.com/DavidMStraub) for all his initial work.
+Thanks to [cgtobi's rmv-card](https://github.com/cgtobi/rmv-card) and [Ian Richardson's list-card](https://github.com/custom-cards/list-card) for all the initial work and inspiration.
