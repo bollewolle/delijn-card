@@ -43,12 +43,12 @@ Set up the De Lijn custom sensor.
 ```yaml
 sensor:
   - platform: delijn
-    sub_key: '<put your data.delijn.be subscriptionkey here>'
+    api_key: '<put your data.delijn.be API subscriptionkey here>'
     nextpassage:
     - stop_id: '200552'
       max_passages: 10
 ```
-**_Note_**: replace with the subscription key you generated with you data.delijn.be developer account.
+**_Note_**: replace with the API subscription key you generated with you data.delijn.be developer account.
 
 ### Step 3
 
