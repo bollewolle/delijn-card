@@ -44,15 +44,15 @@ Set up the De Lijn custom sensor.
 sensor:
   - platform: delijn
     api_key: '<put your data.delijn.be API subscriptionkey here>'
-    nextpassage:
+    next_departure:
     - stop_id: '200552'
-      max_passages: 10
+      number_of_departures: 10
 ```
 **_Note_**: replace with the API subscription key you generated with you data.delijn.be developer account.
 
 ### Step 3
 
-Link `delijn-card` inside you `ui-lovelace.yaml`.
+Link `delijn-card` inside you `ui-lovelace.yaml` or via the `Raw config editor` when using the `Configure UI` in the Home-Assistant interface directly.
 
 ```yaml
 resources:
@@ -62,19 +62,29 @@ resources:
 
 ### Step 4
 
-Add a custom element in your `ui-lovelace.yaml`
+Add a custom element in your `ui-lovelace.yaml`. Or when using the `Configure UI` in the Home-Assistant interface directly you can add a `Manual Card` with this in the Card Configuration.
 
 **Example:**
 
-Example with default layout:
+Example with default layout in the `ui-lovelace.yaml`:
 ```yaml
       - type: 'custom:delijn-card'
         entity: sensor.korenmarkt_perron_2_gent
         title: 'Korenmarkt Perron 2, Gent'
 
 ```
+Same when going via the `Configure UI`:
+```yaml
+entity: sensor.korenmarkt_perron_2_gent
+title: 'Korenmarkt Perron 2, Gent'
+type: 'custom:delijn-card'
+
+
+```
+
 ![example](example.png)
 
+Example with a custom layout in the `ui-lovelace.yaml`. In this case also the scheduled and real-time times are shown:
 ```yaml
       - type: 'custom:delijn-card'
         entity: sensor.brugsepoort_gent
@@ -93,6 +103,28 @@ Example with default layout:
             title: Due at (real-time)
           - field: due_at_sch
             title: Due at (scheduled)
+
+```
+
+Same when going via the `Configure UI`:
+```yaml
+columns:
+  - field: line_number_public
+    title: Line
+  - field: line_transport_type
+    title: Type
+  - field: final_destination
+    title: Towards
+  - field: due_in_min
+    title: Due in (min)
+  - field: due_at_realtime
+    title: Due at (real-time)
+  - field: due_at_schedule
+    title: Due at (scheduled)
+config_type: columns
+entity: sensor.brugsepoort_gent
+title: 'Brugsepoort, Gent'
+type: 'custom:delijn-card'
 
 ```
 ![example](example2.png)

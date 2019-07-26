@@ -160,14 +160,14 @@ class DeLijnCard extends HTMLElement {
                       card_content += `<td class=${columns[column].field}>`;
                       let newText = feed[entry][columns[column].field];
                       card_content += `${newText}`;
-                    } else if (columns[column].field == 'due_at_sch' || columns[column].field == 'due_at_rt') {
+                    } else if (columns[column].field == 'due_at_schedule' || columns[column].field == 'due_at_realtime') {
                       card_content += `<td class=${columns[column].field}>`;
                       let newText = feed[entry][columns[column].field];
                       if (newText !== null) {
                         // change string to correct datetime with timezone offset
-                        var dt = new Date(newText + "+01:00");
-                        // only retrieve the hh:mm and not the seconds (which are always 00)
-                        newText = dt.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");;
+                        var dt = new Date(newText);
+                        // only retrieve the hh:mm and not the seconds (which are almost always 00)
+                        newText = dt.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})/, "$1");
                         card_content += `${newText}`;
                       } else {
                         newText = ""
