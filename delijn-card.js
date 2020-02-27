@@ -156,10 +156,9 @@ class DeLijnCard extends HTMLElement {
                       let newText = feed[entry][columns[column].field];
                       card_content += `${newText}`;
                     } else if(columns[column].field == 'line_transport_type') {
-                      // ideally we show icons here for the different types (not yet implemented)
-                      card_content += `<td class=${columns[column].field}>`;
-                      let newText = feed[entry][columns[column].field];
-                      card_content += `${newText}`;
+                      // show icons for the different types
+                      let transport_type = feed[entry][columns[column].field].toLowerCase();
+                      card_content += `<td> <ha-icon icon="mdi:${transport_type}"></ha-icon>`;
                     } else if (columns[column].field == 'due_at_schedule' || columns[column].field == 'due_at_realtime') {
                       card_content += `<td class=${columns[column].field}>`;
                       let newText = feed[entry][columns[column].field];
