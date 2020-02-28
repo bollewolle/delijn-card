@@ -75,7 +75,7 @@ class DeLijnCard extends HTMLElement {
         const config_type = config.config_type;
         var columns = config.columns;
         this.style.display = 'block';
-        const rowLimit = config.row_limit ? config.row_limit : Object.keys(feed).length;
+        const rowLimit = config.row_limit ? config.row_limit : feed ? Object.keys(feed).length : 10;
         let rows = 0;
 
         if (config_type == "default" || !config_type) {
@@ -92,7 +92,7 @@ class DeLijnCard extends HTMLElement {
 
         // First: define the header (1st row OR taken from config)
         if (feed !== undefined && Object.keys(feed).length > 0) {
-          let card_content = '<table><thread><tr>';
+          let card_content = '<table><thead><tr>';
 
           if (!columns) {
             card_content += `<tr>`;
@@ -191,10 +191,10 @@ class DeLijnCard extends HTMLElement {
           card_content += `</tbody></table>`;
           root.getElementById('container').innerHTML = card_content;
         } else {
-          this.style.display = 'none';
+          root.getElementById('container').innerHTML = '<div><span>No passages anymore today</span></div>' //this.style.display = 'none';
         }
       } else {
-        this.style.display = 'none';
+        root.getElementById('container').innerHTML = '<div><span>No passages anymore today</span></div>' //this.style.display = 'none';
       }
     }
 
