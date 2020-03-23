@@ -99,9 +99,9 @@ Example with a custom layout in the `ui-lovelace.yaml`. In this case also the sc
             title: Towards
           - field: due_in_min
             title: Due in (min)
-          - field: due_at_rt
+          - field: due_at_realtime
             title: Due at (real-time)
-          - field: due_at_sch
+          - field: due_at_schedule
             title: Due at (scheduled)
 
 ```
