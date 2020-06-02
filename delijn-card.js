@@ -83,7 +83,8 @@ class DeLijnCard extends HTMLElement {
           columns = [{'field': 'line_number_public', 'title': 'Line'},
                      {'field': 'line_transport_type', 'title': 'Type'},
                      {'field': 'final_destination', 'title': 'Towards'},
-                     {'field': 'due_in_min', 'title': 'Due in (min)'}];
+                     {'field': 'due_in_min', 'title': 'Due in (min)'},
+                     {'field': 'is_realtime', 'title': 'RT'} ];
         } else if (config_type == "columns" && !columns) {
           columns = config.columns;
         } else if (config_type == "raw" || !columns) {
@@ -136,16 +137,6 @@ class DeLijnCard extends HTMLElement {
                 }
               // else we print only the selected columns
               } else {
-                let has_field = true;
-
-                for (let column in columns) {
-                  if (!feed[entry].hasOwnProperty(columns[column].field)) {
-                    has_field = false;
-                    break;
-                  }
-                }
-
-                if (!has_field) continue;
                 card_content += `<tr>`;
 
                 for (let column in columns) {
@@ -172,7 +163,17 @@ class DeLijnCard extends HTMLElement {
                         newText = ""
                         card_content += `${newText}`;
                       }
-                    } else {
+                    } else if (columns[column].field == 'due_in_min') {
+                      card_content += `<td class=${columns[column].field}>`;
+                      let newText = feed[entry][columns[column].field];
+                      card_content += `${newText}`;
+                    } else if (columns[column].field == 'is_realtime') {
+                      card_content += `<td class=${columns[column].field}>`;
+                      if (feed[entry][columns[column].field] == true) {
+                        card_content += `<ha-icon icon="mdi:signal-variant"></ha-icon>`;
+		      }
+                    }
+			else {
                       card_content += `<td class=${columns[column].field}>`;
                       let newText = feed[entry][columns[column].field];
                       card_content += `${newText}`;
