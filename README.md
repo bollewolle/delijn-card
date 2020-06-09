@@ -103,6 +103,8 @@ Example with a custom layout in the `ui-lovelace.yaml`. In this case also the sc
             title: Due at (real-time)
           - field: due_at_schedule
             title: Due at (scheduled)
+          - field: is_realtime
+            title: RT
 
 ```
 
@@ -121,6 +123,8 @@ columns:
     title: Due at (real-time)
   - field: due_at_schedule
     title: Due at (scheduled)
+  - field: is_realtime
+    title: RT
 config_type: columns
 entity: sensor.brugsepoort_gent
 title: 'Brugsepoort, Gent'
